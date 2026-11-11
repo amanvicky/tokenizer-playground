@@ -4,6 +4,8 @@
 
 **Watch a BPE tokenizer chop your text into pieces, live in your browser:** [amanvicky.github.io/tokenizer-playground](https://amanvicky.github.io/tokenizer-playground/)
 
+![Tokenizer Playground — colored token chips, stats, and the first learned merges](docs/playground-live.png)
+
 Byte-level BPE — the algorithm GPT-style models use to turn text into numbers — starting from 256 raw-byte tokens and repeatedly merging the most frequent adjacent pair. The merge list here was learned offline by a ~60-line Python trainer ([`trainer/train_bpe.py`](trainer/train_bpe.py)) on this repo's own corpus; your browser applies the exact same list as you type.
 
 ## What you see
