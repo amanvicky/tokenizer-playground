@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tokenizer Playground — watch BPE chop text into tokens</title>
+  <meta name="description" content="A byte-level BPE tokenizer, trained on this repo's own corpus, running live in your browser. Type text, watch it become tokens. Nothing uploaded.">
+  <meta name="theme-color" content="#0a0e14">
+  <meta property="og:title" content="Tokenizer Playground — BPE, live">
+  <meta property="og:description" content="Type text and watch a byte-level BPE tokenizer chop it into colored pieces. Trained in Python, running in your browser.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230a0e14'/%3E%3Ctext x='32' y='42' font-size='30' text-anchor='middle' fill='%2300e5a0' font-family='monospace'%3E%3C/text%3E%3Ccircle cx='20' cy='32' r='10' fill='none' stroke='%2300e5a0' stroke-width='3'/%3E%3Crect x='36' y='22' width='14' height='20' fill='%23fbbf24'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Tokenizer <span>playground</span></h1>
+    <p class="sub">A byte-level BPE tokenizer, trained on this repo's own corpus, running live in your browser.</p>
+  </header>
+
+  <main>
+    <div class="editor">
+      <textarea id="input" spellcheck="false"></textarea>
+      <div class="stats" id="stats"></div>
+      <div class="chips" id="chips"></div>
+      <div class="roundtrip" id="roundtrip"></div>
+    </div>
+
+    <aside class="side">
+      <section>
+        <h2>vocab</h2>
+        <div id="vocabInfo" class="kv"></div>
+      </section>
+      <section>
+        <h2>what it learned first</h2>
+        <div id="topMerges" class="merges"></div>
+      </section>
+      <section>
+        <h2>try a sample</h2>
+        <div class="samples">
+          <button data-sample="simple">plain english</button>
+          <button data-sample="code">python code</button>
+          <button data-sample="weird">emoji + unicode</button>
+        </div>
+      </section>
+      <section class="explain">
+        <h2>what this is</h2>
+        <p>Byte pair encoding starts from 256 raw-byte tokens and repeatedly merges the most frequent adjacent pair. That merge list — learned offline by <a href="https://github.com/amanvicky/tokenizer-playground/blob/main/trainer/train_bpe.py" target="_blank" rel="noopener">a 60-line Python trainer</a> on this repo's corpus — is what your browser applies as you type.</p>
+        <p>This is how LLMs actually see text, minus the word-splitting niceties real tokenizers add. Frames never leave the page; there is no backend.</p>
+        <p class="privacy">Colors alternate so you can see where one token ends. Nothing is uploaded — view source.</p>
+      </section>
+    </aside>
+  </main>
+
+  <footer>
+    <a href="https://github.com/amanvicky/tokenizer-playground" target="_blank" rel="noopener">source</a>
+    <a href="https://github.com/amanvicky/attention-from-scratch" target="_blank" rel="noopener">attention, from scratch</a>
+    <a href="https://github.com/amanvicky" target="_blank" rel="noopener">more from me</a>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
